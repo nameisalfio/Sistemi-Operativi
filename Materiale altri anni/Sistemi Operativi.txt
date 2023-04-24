@@ -1,0 +1,16 @@
+
+
+Processo "Pronto" - "bloccante"
+
+exclusive lock vs shared lock
+
+Esercizio: RAID 5 trova il valore di un settore X - Y 
+
+Cos'è la memoria virtuale?
+
+2 Esercizi su pagine...blocchi calcolare offset..
+
+"Quali tra queste non è una competenza del sistema operativo"
+
+
+esercizi sugli i-node
