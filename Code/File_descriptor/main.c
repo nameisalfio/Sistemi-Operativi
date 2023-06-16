@@ -18,7 +18,7 @@ int main()
     int len = strlen(msg);
     char row[len+1];
 
-    fd = creat("file.txt", S_IRUSR | S_IWUSR);
+    fd = creat("file.txt", O_RDWR | O_CREAT);
     if(fd < 0)
         handle_error("Error create file\n");
 
