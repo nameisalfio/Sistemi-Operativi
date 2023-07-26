@@ -1,18 +1,18 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
 #define KEY_SIZE 4096
 
-typedef struct __node
+typedef struct _node
 {
     char key[KEY_SIZE];
     int value;
-    struct __node *next;
+    struct _node *next;
 } node;
 
 typedef struct 
@@ -20,11 +20,11 @@ typedef struct
     node *head;
 } list;
 
-void init_list(list *l) { l->head = NULL; }
+void list_init(list *l) { l->head = NULL; }
 
-void insert_head(list *l, const char *key, const int value) 
+void list_insert_head(list *l, char *key, int value) 
 {
-    node *n = (node*) malloc(sizeof(node));
+    node *n = malloc(sizeof(node));
     strncpy(n->key, key, KEY_SIZE);
     n->value = value;
 
@@ -32,16 +32,16 @@ void insert_head(list *l, const char *key, const int value)
     l->head = n;
 }
 
-void insert_tail(list *l, const char *key, const int value) 
+void list_insert_tail(list *l, char *key, int value) 
 {
-    node *n = (node*) malloc(sizeof(node));
+    node *n = malloc(sizeof(node));
     strncpy(n->key, key, KEY_SIZE);
     n->value = value;
     n->next = NULL;
 
     if(!l->head)
     {
-        insert_head(l, key, value);
+        list_insert_head(l, key, value);
         return;
     }
 
@@ -51,7 +51,7 @@ void insert_tail(list *l, const char *key, const int value)
     ptr->next = n;
 }
 
-void list_print(const list *l) 
+void list_print (list *l) 
 {
     node *ptr = l->head;
     while (ptr) 
@@ -62,10 +62,9 @@ void list_print(const list *l)
     printf("\n");
 }
 
-bool list_search(const list *l, const char *key, int *result)
+bool list_search (list *l, char *key, int *result)
 {
     node *ptr = l->head;
-
     while (ptr && (strcmp(ptr->key, key) != 0))
         ptr = ptr->next;
 
@@ -75,7 +74,7 @@ bool list_search(const list *l, const char *key, int *result)
     return true;
 }
 
-int list_count(const list *l) 
+int list_count (list *l) 
 {
     node *ptr = l->head;
     int counter = 0;
@@ -88,7 +87,7 @@ int list_count(const list *l)
     return counter;
 }
 
-void destroy_list(list *l) 
+void list_destroy(list *l) 
 {
     node *ptr = l->head;
     node *tmp;
